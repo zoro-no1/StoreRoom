@@ -8,7 +8,6 @@ const linkSchema = new Schema({
     ref:'User',
     required:true
   },
-  public:false,
   hash:{
     type:String,
     required:true,
@@ -16,4 +15,4 @@ const linkSchema = new Schema({
   }
 })
 
-export const Link=model("Link",linkSchema)
+export const Link=mongoose.model("Link",linkSchema)

@@ -65,3 +65,30 @@ try {
     
 }
 }
+export const allContent =async (req,res)=>{
+    try {
+        const user=req.user._id;
+        if(!user){
+            return res.status(404).json({
+                message:"invalide token"
+            })
+        }
+    
+        const contents= await Post.find({owner:user})
+        if(!contents){
+            res.status(502).json({
+                message:"something went wrong "
+            })
+        }
+        res.status(200).json({
+                message:contents
+            })
+    } catch (error) {
+        console.log(error);
+
+          res.status(500).json({
+                message:"Backend Error"
+            })
+    }
+
+}
