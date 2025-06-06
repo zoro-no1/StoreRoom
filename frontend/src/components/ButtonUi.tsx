@@ -9,7 +9,7 @@ export interface buttonProp {
   startIcon?: ReactElement;
   endIcon?: ReactElement;
 }
-const defaultStyle = "rounded-md flex";
+const defaultStyle = "rounded-md flex items-center";
 const variantStyle = {
   primary: "bg-purple-600 text-white",
   secondary: "bg-purple-200 text-purple-800",

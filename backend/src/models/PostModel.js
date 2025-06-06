@@ -17,6 +17,9 @@ const postSchema=new Schema({
         type:mongoose.Types.ObjectId,
         ref:"User",
         required:true
+    },
+    linkof:{
+        enum:["x","fb","insta","git","other","yt"]
     }
 },{timestamps:true})
 
