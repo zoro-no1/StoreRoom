@@ -18,8 +18,8 @@ const postSchema=new Schema({
         ref:"User",
         required:true
     },
-    linkof:{
-        enum:["x","fb","insta","git","other","yt"]
+    linkOf:{
+        type:String
     }
 },{timestamps:true})
 

@@ -8,16 +8,16 @@ export const createLink = async (req,res)=>{
         if(!user) return res.status(404).json({message:"invalide Token"})
 
         let createlink= await Link.findOne({owner:user})
-        console.log(createlink);
+     
         
         if(!createlink){
             createlink= await Link.create({
                 owner:user,
                 hash:rendomString()
             })
-            console.log(createlink);
+           
         }
-        console.log(createlink);
+       
         
         res.status(201).json({
             message:createlink

@@ -3,31 +3,33 @@ import { Post } from "../models/PostModel.js";
 import Tag from "../models/tagModel.js";
 
 export const createPost =async(req,res)=>{
-    const {title,link,tags}=req.body;
-    console.log(tags);
+    const {title,link,tags,linkOf}=req.body;
+
+
     
     if(!title||!link){
-        return res.status(404).json({
+        return res.status(400).json({
             message:"All details Needed"
         })
     }
     try {
-        let tagArray= tags.map(async(t)=>{
-           let tag= await Tag.findOne({tagname:t});
-           if(!tag){
-            tag= await Tag.create({
-                tagname:t
+        if (tags) {
+            let tagArray= tags.map(async(t)=>{
+               let tag= await Tag.findOne({tagname:t});
+               if(!tag){
+                tag= await Tag.create({
+                    tagname:t
+                })
+               }
+               return tag
             })
-           }
-           return tag
-        })
-        console.log(tagArray);
+        }
         
         const post =await Post.create({
             title,
             link,
-            tag:tagArray,
-            owner:req.user._id
+            owner:req.user._id,
+            linkOf
         })
         if(!post){
             return res.status(401).json({
@@ -39,7 +41,7 @@ export const createPost =async(req,res)=>{
         })
         
     } catch (error) {
-        console.log(error);
+        console.log(error +' create problem');
         
     }
 }

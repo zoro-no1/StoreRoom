@@ -1,25 +1,30 @@
-import { Card } from "./components/Card";
-import { SideBar } from "./components/SideBar";
-import { TopBar } from "./components/TopBar";
-
+import { Navigate, Route,Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import Auth from "./pages/AuthPage";
+import { useEffect } from "react";
+import { authStore } from "./store/authStore";
+import WelcomePage from "./pages/WelcomePage";
 function App() {
-  return (
-    <div className=" bg-gray-800 min-h-svh text-white flex w-svw">
-      <div className=" w-1/3 bg-pink-300 h-svh">
-        <SideBar />
-      </div>
-      <div className=" w-full ">
+ const {authUser,checkAuth}=authStore()
 
-      <div className="w-full h-24 ">
-        <TopBar />
-        </div>
-        <div className="mt-3 mx-3 h-1/3">
-      <Card title="first" link="https://www.youtube.com/watch?v=7W1me-WoWXo" type="yt"/>
+useEffect(()=>{
+  
+  if(!authUser){
+    checkAuth()
+  }
     
-      </div>
-      </div>
-    </div>
-  );
+},[checkAuth])
+  
+
+
+ return(
+ <Routes>
+  <Route path="/" element={<WelcomePage/>}/>
+  <Route path="/home" element={authUser?<HomePage/>:<Navigate to={"/"}/>}/>
+  <Route path="/auth" element={!authUser?<Auth/>:<Navigate to={"/home"}/> }/>
+ </Routes>
+ )
+
 }
 
 export default App;

@@ -2,7 +2,7 @@ import type { ReactElement } from "react";
 
 export interface buttonProp {
   text?: string;
-  onClick?: () => void;
+  onClick?: (e?:any) =>Promise<void>;
   size: "lg" | "md" | "sm";
   className?: string;
   variant: "primary" | "secondary";

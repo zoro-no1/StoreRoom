@@ -43,7 +43,7 @@ export const signin =async (req,res)=>{
      })
  }
     catch (error) {
-    console.log(error);
+    console.log(error +" signin");
     res.status(500).json({
         message:"Backend Error"
     })
@@ -110,7 +110,7 @@ export const signin =async (req,res)=>{
             user:req.user
         })
     } catch (error) {
-        console.log(error);
+        console.log(error +' check problem');
         
         res.status(500)
         .json({
