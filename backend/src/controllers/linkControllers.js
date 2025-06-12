@@ -36,14 +36,17 @@ export const showLink =async (req,res)=>{
         const {id:link}=req.params
         if(!link)  return res.status(404).json({message:"invalide Link"})
     
-            const findLink=await Link.findOne({hash:link})
+            const findLink=await Link.findOne({hash:link}).populate({path:"owner",select:"-password -email"})
+            console.log(findLink);
+            
             if(!findLink) return res.status(404).json({message:"invalide Link"})
     
             const linkContant=await Post.find({owner:findLink.owner})
             if(!linkContant)return res.status(404).json({message:"invalide Link"})
             
             res.status(202).json({
-                message:linkContant
+                message:linkContant,
+                owner:findLink
             })
     } catch (error) {
         console.log(error);
@@ -73,4 +76,29 @@ export const deleteLink=async (req,res)=>{
             message:"Backend Problen"
         })
    }
+}
+export const getMyLinke =async (req,res)=>{
+        const user=req.user._id
+        if(!user){
+            return res.status(404).json({
+                message:"not Valide"
+            })
+        }
+        try {
+            const userLink =await Link.findOne({owner:user})
+            if(!userLink){
+                 return res.status(500).json({
+                message:"Somthing Went Wrong "
+            })
+            }
+             return res.status(200).json({
+                message:userLink
+            })
+        } catch (error) {
+            console.log(error);
+            
+            return res.status(500).json({
+                message:"Server Error"
+            })
+        }
 }

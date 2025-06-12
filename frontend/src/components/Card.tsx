@@ -57,7 +57,7 @@ export const Card = ({ title, link, tag = [], type, onClick }: Props) => {
             title="Embedded content"
           ></iframe>
         )}
-       <Link to={link}><Button size="sm" variant="primary" text="Link"></Button></Link>
+       <Link to={link} target="_blank" rel="noopener noreferrer" ><Button size="sm" variant="primary" text="Link" className="mt-2"></Button></Link>
       </div>
 
       {/* Tags */}

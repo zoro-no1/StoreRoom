@@ -7,8 +7,8 @@ import { Button } from "./ButtonUi";
 import { MenuIcon, XIcon } from "lucide-react"; // Use a hamburger and close icon
 
 interface TopBarProps {
-  add?: () => Promise<void>;
-  share?: () => Promise<void>;
+  add?: () =>void;
+  share?: () =>void;
 }
 
 export const TopBar = ({ add, share }: TopBarProps) => {

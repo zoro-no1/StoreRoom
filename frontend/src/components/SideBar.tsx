@@ -54,10 +54,10 @@ const SideItem: React.FC<SideItemProps> = ({ text, icon, className }) => (
   </div>
 );
 
-export const SideBar = () => {
+export const SideBar = ({link}:{link:()=>void}) => {
   return (
-   <aside className="fixed top-0 left-0 h-screen bg-gray-900 md:p-4  flex flex-col z-50
-  w-[40%] md:w-[33.333%] lg:w-[20%]">
+   <aside className="fixed top-0 left-0  bg-gray-900 md:p-4  flex flex-col z-50
+  w-[36%] md:w-[24%] lg:w-[20%]">
 
       {/* Brand / Logo */}
       <div className="mb-8 p-4 border-b border-gray-700">
@@ -74,6 +74,10 @@ export const SideBar = () => {
         <SideItem text="Instagram" icon={<span role="img" aria-label="Instagram icon">📸</span>} />
         <SideItem text="GitHub" icon={<span role="img" aria-label="GitHub icon">🐙</span>} />
         <SideItem text="Other" icon={<span role="img" aria-label="Other icon">🌐</span>} />
+        <div onClick={()=>link()}>
+        <SideItem text="Other Brain" icon={<span role="img" aria-label="Other icon">🌐</span>} />
+        </div>
+          
       </nav>
     </aside>
   );

@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import CrossIcon from "../icons/CrossIcon"
 import { Button } from "./ButtonUi"
 import postStore from "../store/postStore";
+import InputBox from "./InputBox";
 
 
 
@@ -58,8 +59,8 @@ const [language,setLanguage]=useState("yt")
 
         {/* Input fields */}
         <div className="flex flex-col gap-3">
-          <Input placeholder="Title" ref={titleRef} />
-          <Input placeholder="Link"  ref={linkRef}/>
+          <InputBox placeholder="Title" ref={titleRef} />
+          <InputBox placeholder="Link"  ref={linkRef}/>
            <select
           
             value={language}
@@ -84,6 +85,3 @@ const [language,setLanguage]=useState("yt")
          </div>
 }
 
-function Input({placeholder,ref}:{placeholder:string,ref:any}){
-    return <input type="text" placeholder={placeholder} className=" rounded-md p-2 text-black" ref={ref} />
-}
